@@ -1,0 +1,7 @@
+APP_TITLE = "SACMA Calc"
+START_WINDOW_SIZE = "600x400"
+WELCOME_TEXT = "Benvenuto!"
+LABEL_NAME = "Inserisci il tuo nome:"
+DROPDOWN_LABEL = "Seleziona l'azione:"
+BUTTON_TEXT = "Avanti"
+ACTION_CALCULATE = "Calcolare prezzi e materiali"
