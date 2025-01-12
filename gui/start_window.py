@@ -9,19 +9,20 @@ class App:
         self.root.title(c.APP_TITLE)
         self.center_window(c.START_WINDOW_SIZE)
 
-        # Лейбл сверху
+        # welcome label
         welcome_label = tk.Label(
             root, text=c.WELCOME_TEXT,
             font=("Arial", 20), fg="blue"
         )
         welcome_label.pack(pady=10)
 
-        # Поле ввода имени
+        # Enter name field
         name_label = tk.Label(root, text=c.LABEL_NAME, font=("Arial", 12))
         name_label.pack()
         self.name_entry = tk.Entry(root, font=("Arial", 12))
         self.name_entry.pack(pady=5)
 
+        # Dropdown list
         dropdown_label = tk.Label(
             root,
             text=c.DROPDOWN_LABEL,
@@ -38,11 +39,12 @@ class App:
         actions_dropdown['values'] = [c.ACTION_CALCULATE]
         actions_dropdown.pack(pady=5)
 
-        avanti_button = tk.Button(
+        # Go button
+        go_button = tk.Button(
             root, text=c.BUTTON_TEXT,
             font=("Arial", 12), command=self.next_window
         )
-        avanti_button.pack(pady=20)
+        go_button.pack(pady=20)
 
     def center_window(self, size):
         """Centers window on the screen."""
