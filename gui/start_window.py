@@ -11,20 +11,17 @@ class App(Window):
         self.setup_ui()
 
     def setup_ui(self):
-        # Лейбл сверху
         welcome_label = tk.Label(
             self.root, text=c.WELCOME_TEXT,
             font=("Arial", 20), fg="blue"
         )
         welcome_label.pack(pady=10)
 
-        # Поле ввода имени
         name_label = tk.Label(self.root, text=c.LABEL_NAME, font=("Arial", 12))
         name_label.pack()
         self.name_entry = tk.Entry(self.root, font=("Arial", 12))
         self.name_entry.pack(pady=5)
 
-        # Выпадающий список действий
         dropdown_label = tk.Label(
             self.root,
             text=c.DROPDOWN_LABEL,
@@ -41,7 +38,6 @@ class App(Window):
         actions_dropdown['values'] = [c.ACTION_CALCULATE]
         actions_dropdown.pack(pady=5)
 
-        # Кнопка "Avanti"
         avanti_button = tk.Button(
             self.root, text=c.BUTTON_TEXT,
             font=("Arial", 12), command=self.next_window
@@ -49,7 +45,6 @@ class App(Window):
         avanti_button.pack(pady=20)
 
     def next_window(self):
-        """Закрывает текущее окно и запускает следующее."""
         selected_action = self.action_var.get()
         self.root.destroy()  # Закрыть текущее окно
         if selected_action == c.ACTION_CALCULATE:
