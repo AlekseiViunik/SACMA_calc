@@ -1,5 +1,5 @@
 APP_TITLE = "SACMA Calc"
-START_WINDOW_SIZE = "600x400"
+START_WINDOW_SIZE = "400x300"
 WELCOME_TEXT = "Benvenuto!"
 LABEL_NAME = "Inserisci il tuo nome:"
 DROPDOWN_LABEL = "Seleziona l'azione:"
