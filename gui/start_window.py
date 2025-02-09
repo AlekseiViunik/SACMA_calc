@@ -1,37 +1,39 @@
-import tkinter as tk
 from tkinter import ttk
+import tkinter as tk
 from constants import const as c
+from gui.window_abstract import Window
+from gui.calc_window import Calc
 
 
-class App:
+class App(Window):
     def __init__(self, root):
-        self.root = root
-        self.root.title(c.APP_TITLE)
-        self.center_window(c.START_WINDOW_SIZE)
+        super().__init__(root, c.APP_TITLE, c.START_WINDOW_SIZE)
+        self.setup_ui()
 
-        # welcome label
+    def setup_ui(self):
+        # Лейбл сверху
         welcome_label = tk.Label(
-            root, text=c.WELCOME_TEXT,
+            self.root, text=c.WELCOME_TEXT,
             font=("Arial", 20), fg="blue"
         )
         welcome_label.pack(pady=10)
 
-        # Enter name field
-        name_label = tk.Label(root, text=c.LABEL_NAME, font=("Arial", 12))
+        # Поле ввода имени
+        name_label = tk.Label(self.root, text=c.LABEL_NAME, font=("Arial", 12))
         name_label.pack()
-        self.name_entry = tk.Entry(root, font=("Arial", 12))
+        self.name_entry = tk.Entry(self.root, font=("Arial", 12))
         self.name_entry.pack(pady=5)
 
-        # Dropdown list
+        # Выпадающий список действий
         dropdown_label = tk.Label(
-            root,
+            self.root,
             text=c.DROPDOWN_LABEL,
             font=("Arial", 12)
         )
         dropdown_label.pack()
         self.action_var = tk.StringVar(value=c.ACTION_CALCULATE)
         actions_dropdown = ttk.Combobox(
-            root,
+            self.root,
             textvariable=self.action_var,
             font=("Arial", 12),
             state="readonly"
@@ -39,42 +41,18 @@ class App:
         actions_dropdown['values'] = [c.ACTION_CALCULATE]
         actions_dropdown.pack(pady=5)
 
-        # Go button
-        go_button = tk.Button(
-            root, text=c.BUTTON_TEXT,
+        # Кнопка "Avanti"
+        avanti_button = tk.Button(
+            self.root, text=c.BUTTON_TEXT,
             font=("Arial", 12), command=self.next_window
         )
-        go_button.pack(pady=20)
-
-    def center_window(self, size):
-        """Centers window on the screen."""
-        self.root.geometry(size)
-        self.root.update_idletasks()
-        screen_width = self.root.winfo_screenwidth()
-        screen_height = self.root.winfo_screenheight()
-        window_width, window_height = map(int, size.split('x'))
-        x = (screen_width // 2) - (window_width // 2)
-        y = (screen_height // 2) - (window_height // 2)
-        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        avanti_button.pack(pady=20)
 
     def next_window(self):
-        """Closes current window and opens the new one."""
+        """Закрывает текущее окно и запускает следующее."""
         selected_action = self.action_var.get()
-        print(f"Action selected: {selected_action}")
-
-        self.root.destroy()
-
+        self.root.destroy()  # Закрыть текущее окно
         if selected_action == c.ACTION_CALCULATE:
-            open_calculation_window()
-
-
-def open_calculation_window():
-    """Пример открытия нового окна."""
-    new_root = tk.Tk()
-    new_root.title("Calcolare prezzi e materiali")
-    new_root.geometry("400x300")
-    label = tk.Label(
-        new_root, text="Окно расчета!", font=("Arial", 16)
-    )
-    label.pack(pady=50)
-    new_root.mainloop()
+            new_root = tk.Tk()
+            Calc(new_root)  # Открытие окна Calc
+            new_root.mainloop()
