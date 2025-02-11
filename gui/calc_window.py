@@ -122,9 +122,10 @@ class Calc(Window):
     def add_block(self):
         """Добавляет новый блок с кнопками 'Blocco' и 'Cancellare' в
         прокручиваемом фрейме."""
+
         self.block_count += 1
 
-        # Фрейм для кнопок блока
+        # Фрейм для группы кнопок (Blocco + Cancellare)
         block_frame = tk.Frame(self.inner_frame)
         block_frame.pack(fill=tk.X, padx=10, pady=5)
 
@@ -136,6 +137,15 @@ class Calc(Window):
         )
         block_button.pack(side=tk.LEFT, padx=5)
 
-        # Кнопка 'Cancellare'
-        delete_button = tk.Button(block_frame, text="Cancellare", width=10)
+        # Кнопка 'Cancellare' с функцией удаления родительского фрейма
+        delete_button = tk.Button(
+            block_frame,
+            text="Cancellare",
+            width=10,
+            command=lambda: self.delete_block(block_frame)
+        )
         delete_button.pack(side=tk.LEFT, padx=5)
+
+    def delete_block(self, block_frame):
+        """Удаляет выбранный блок (кнопки 'Blocco' и 'Cancellare')."""
+        block_frame.destroy()
