@@ -29,7 +29,11 @@ class BlockEditor:
         self.name_entry.focus()
 
         # Кнопка "Aggiungi Sezione" перед прокручиваемым фреймом
-        add_section_button = tk.Button(self.window, text="Aggiungi Sezione", command=self.add_section)
+        add_section_button = tk.Button(
+            self.window,
+            text="Aggiungi Sezione",
+            command=self.add_section
+        )
         add_section_button.pack(pady=(20, 5), anchor="w", padx=10)
 
         # Прокручиваемый фрейм для секций
@@ -37,12 +41,23 @@ class BlockEditor:
         scroll_container.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
         canvas = tk.Canvas(scroll_container)
-        scrollbar = tk.Scrollbar(scroll_container, orient="vertical", command=canvas.yview)
+        scrollbar = tk.Scrollbar(
+            scroll_container,
+            orient="vertical",
+            command=canvas.yview
+        )
         self.inner_frame = tk.Frame(canvas)
 
         # Привязываем прокрутку
-        self.inner_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
-        self.canvas_window = canvas.create_window((0, 0), window=self.inner_frame, anchor="nw")
+        self.inner_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        self.canvas_window = canvas.create_window(
+            (0, 0),
+            window=self.inner_frame,
+            anchor="nw"
+        )
         canvas.configure(yscrollcommand=scrollbar.set)
 
         canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
@@ -85,12 +100,20 @@ class BlockEditor:
         section_frame.pack(fill=tk.X, padx=10, pady=5)
 
         # Кнопка 'Sezione N'
-        section_button = tk.Button(section_frame, text=f"Sezione {self.section_count}", width=30)
+        section_button = tk.Button(
+            section_frame,
+            text=f"Sezione {self.section_count}",
+            width=30
+        )
         section_button.pack(side=tk.LEFT, padx=5)
 
         # Кнопка 'Cancellare' для удаления секции
-        delete_button = tk.Button(section_frame, text="Cancellare", width=10, 
-                                  command=lambda: self.delete_section(section_frame))
+        delete_button = tk.Button(
+            section_frame,
+            text="Cancellare",
+            width=10,
+            command=lambda: self.delete_section(section_frame)
+        )
         delete_button.pack(side=tk.LEFT, padx=5)
 
     def delete_section(self, section_frame):
