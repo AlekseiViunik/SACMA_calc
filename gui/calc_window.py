@@ -1,6 +1,7 @@
 import tkinter as tk
 from datetime import datetime
 from gui.window_abstract import Window
+from gui.block_editor import BlockEditor
 
 
 class Calc(Window):
@@ -133,7 +134,8 @@ class Calc(Window):
         block_button = tk.Button(
             block_frame,
             text=f"Blocco {self.block_count}",
-            width=30
+            width=30,
+            command=lambda: self.open_block_editor(block_button)
         )
         block_button.pack(side=tk.LEFT, padx=5)
 
@@ -149,3 +151,7 @@ class Calc(Window):
     def delete_block(self, block_frame):
         """Удаляет выбранный блок (кнопки 'Blocco' и 'Cancellare')."""
         block_frame.destroy()
+
+    def open_block_editor(self, block_button):
+        """Открывает окно для редактирования имени блока."""
+        BlockEditor(self.root, block_button)
