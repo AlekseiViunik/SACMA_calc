@@ -5,7 +5,7 @@ from gui.window_abstract import Window
 
 class Calc(Window):
     def __init__(self, root):
-        super().__init__(root, "Calcolare prezzi e materiali", "1000x700")
+        super().__init__(root, "Calcolare prezzi e materiali", "700x700")
         self.setup_ui()
 
     def setup_ui(self):
