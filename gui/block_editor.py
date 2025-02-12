@@ -14,7 +14,7 @@ class BlockEditor:
         self.window = tk.Toplevel(parent)
         self.window.title("Modifica Blocco")
         self.window.geometry("420x500")
-        
+
         # Make the window modal (block interaction with the main window)
         self.window.grab_set()
 
